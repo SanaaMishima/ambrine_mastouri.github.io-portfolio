@@ -1,66 +1,828 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Ambrine MASTOURI</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio – Ambrine Mastouri</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div class="layout-container">
-        <aside class="sidebar">
-            <div class="profile-header">
-                <h2>Ambrine MASTOURI</h2>
-                <a href="#about" class="active-link">A propos de moi</a>
-            </div>
-            
-            <hr class="separator">
+  <!-- ── SIDEBAR ───────────────────────────── -->
+  <aside class="sidebar">
+    <div class="sidebar-accent-line"></div>
 
-            <div class="projects-menu">
-                <h3>Projets</h3>
-                
-                <button class="collapsible">▼ Lycée, Spécialité NSI</button>
-                <div class="content-dropdown">
-                    <button class="project-btn active-btn"><span class="active-indicator"></span>Première NSI, Morpion</button>
-                    <button class="project-btn inactive-btn">Première NSI, Site web</button>
-                </div>
-
-                <button class="collapsible">▼ BUT Informatique, 1re année</button>
-                <div class="content-dropdown">
-                    <button class="project-btn inactive-btn">SAE</button>
-                    <button class="project-btn inactive-btn">SAE</button>
-                </div>
-            </div>
-        </aside>
-
-        <main class="main-content">
-            <section id="project-details">
-                <h1 class="page-title">Projet libre de Première NSI : Morpion</h1>
-                
-                <div class="tech-stack">
-                    <div>
-                        <h3>Langage :</h3>
-                        <ul><li>Python</li></ul>
-                    </div>
-                    <div>
-                        <h3>Logiciel :</h3>
-                        <ul><li>Thonny</li></ul>
-                    </div>
-                </div>
-
-                <div class="section-block">
-                    <h3>Contexte :</h3>
-                    <p>Au cours de mon année de Première, en spécialité NSI, j'ai eu l'occasion de réaliser plusieurs projets afin de mettre en pratique les notions de cours.<br>
-                    Ce Morpion a été le premier projet de l'année et il m'a permis de vraiment apprendre à coder en Python.<br>
-                    J'ai appris à utiliser les tableaux, boucles while et for, les conditions if.</p>
-                </div>
-
-                </section>
-        </main>
+    <!-- STICKY TOP : profil + à propos -->
+    <div class="sidebar-sticky-top">
+      <div class="profile-area">
+        <div class="avatar-ring"><img class="img-avatar" alt="avatar" src="img/avatar.png"/></div>
+        <div class="profile-name">Ambrine Mastouri</div>
+        <div class="profile-role">Étudiante BUT Informatique</div>
+      </div>
+      <div class="nav-label">Navigation</div>
+      <button class="project-btn active" onclick="showAbout(this)">
+        <span class="dot"></span> À propos
+      </button>
     </div>
 
-    <script src="script.js"></script>
+    <!-- SCROLLABLE : uniquement les projets -->
+    <div class="sidebar-scroll">
+      <div class="nav-label" style="margin-top:1rem">Projets</div>
+
+      <div class="nav-group">
+        <button class="collapsible open" onclick="toggleGroup(this)">
+          Lycée — NSI <span class="chevron open">▾</span>
+        </button>
+        <div class="dropdown-content" style="max-height:200px">
+          <button class="project-btn" onclick="showProject('morpion', this)">
+            <span class="dot"></span> Morpion
+          </button>
+          <button class="project-btn" onclick="showProject('site-web', this)">
+            <span class="dot"></span> Site web
+          </button>
+        </div>
+      </div>
+
+      <div class="nav-group">
+        <button class="collapsible open" onclick="toggleGroup(this)">
+          BUT Info — 1re année <span class="chevron open">▾</span>
+        </button>
+        <div class="dropdown-content" style="max-height:200px">
+          <button class="project-btn" onclick="showProject('sae101', this)">
+            <span class="dot"></span> SAÉ 1.01
+          </button>
+          <button class="project-btn" onclick="showProject('sae102', this)">
+            <span class="dot"></span> SAÉ 1.02
+          </button>
+          <button class="project-btn" onclick="showProject('sae104', this)">
+            <span class="dot"></span> SAÉ 1.04
+          </button>
+          <button class="project-btn" onclick="showProject('sae201', this)">
+            <span class="dot"></span> SAÉ 2.01
+          </button>
+        </div>
+      </div>
+
+      <div class="nav-group">
+        <button class="collapsible open" onclick="toggleGroup(this)">
+          BUT Info — 2e année <span class="chevron open">▾</span>
+        </button>
+        <div class="dropdown-content" style="max-height:200px">
+          <button class="project-btn" onclick="showProject('sae301', this)">
+            <span class="dot"></span> SAÉ 3.01
+          </button>
+          <button class="project-btn" onclick="showProject('sae401', this)">
+            <span class="dot"></span> SAÉ 4.01
+          </button>
+          <button class="project-btn" onclick="showProject('stage', this)">
+            <span class="dot"></span> Stage
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STICKY BOTTOM : liens réseaux -->
+    <div class="sidebar-footer">
+      <a href="https://github.com/SanaaMishima" target="_blank" class="social-link" title="GitHub"><img class="img-git" alt="GitHub" src="img/github.png"/></a>
+      <a href="https://www.linkedin.com/in/ambrine-mastouri-9b633332b/" target="_blank" class="social-link" title="LinkedIn"><img class="img-linkedin" alt="LinkedIn" src="img/linkedin.png"/></a>
+      <a href="mailto:ambrine.mastouri@gmail.com" class="social-link" title="Gmail"><img class="img-gmail" alt="Gmail" src="img/gmail.png"/></a>
+    </div>
+  </aside>
+
+  <!-- ── MAIN CONTENT ──────────────────────── -->
+  <main class="main">
+
+    <!-- INDEX PORTFOLIO -->
+    <section id="content-index" class="content-section hidden">
+      <div class="page-header">
+        <div class="project-eyebrow">Vue d'ensemble</div>
+        <h1>Portfolio</h1>
+      </div>
+      <div class="section">
+        <div class="section-head">Lycée — NSI</div>
+        <div class="index-list">
+          <button class="index-card" onclick="showProject('morpion', null)">
+            <span class="index-card-title">Morpion</span>
+            <span class="index-card-sub">Projet libre · Première NSI · Python</span>
+          </button>
+          <button class="index-card" onclick="showProject('site-web', null)">
+            <span class="index-card-title">Site web</span>
+            <span class="index-card-sub">Projet · Première NSI · HTML, CSS, JS, PHP</span>
+          </button>
+        </div>
+      </div>
+      <div class="section">
+        <div class="section-head">BUT Info — 1re année</div>
+        <div class="index-list">
+          <button class="index-card" onclick="showProject('sae101', null)">
+            <span class="index-card-title">SAÉ 1.01</span>
+            <span class="index-card-sub">Réseaux sociaux · Python, Jupyter Notebook</span>
+          </button>
+          <button class="index-card" onclick="showProject('sae102', null)">
+            <span class="index-card-title">SAÉ 1.02</span>
+            <span class="index-card-sub">Algorithmes de tri · Python</span>
+          </button>
+          <button class="index-card" onclick="showProject('sae104', null)">
+            <span class="index-card-title">SAÉ 1.04</span>
+            <span class="index-card-sub">Base de données · SQL, PostgreSQL</span>
+          </button>
+          <button class="index-card" onclick="showProject('sae201', null)">
+            <span class="index-card-title">SAÉ 2.01</span>
+            <span class="index-card-sub">Jeu d'échecs · Java, GitHub</span>
+          </button>
+        </div>
+      </div>
+      <div class="section">
+        <div class="section-head">BUT Info — 2e année</div>
+        <div class="index-list">
+          <button class="index-card" onclick="showProject('sae301', null)">
+            <span class="index-card-title">SAÉ 3.01</span>
+            <span class="index-card-sub">Diffusion sonore · Flask, JS</span>
+          </button>
+          <button class="index-card" onclick="showProject('sae401', null)">
+            <span class="index-card-title">SAÉ 4.01</span>
+            <span class="index-card-sub">Refonte diffusion sonore · Flask, SQL, AJAX</span>
+          </button>
+          <button class="index-card" onclick="showProject('stage', null)">
+            <span class="index-card-title">Stage</span>
+            <span class="index-card-sub">Plan interactif Chiesi · Full-Stack Flask</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- INDEX LYCÉE NSI -->
+    <section id="content-index-lycee" class="content-section hidden">
+      <div class="page-header">
+        <div class="project-eyebrow"><button class="breadcrumb-btn" onclick="showSection('content-index')">Portfolio</button> ›</div>
+        <h1>Lycée — NSI</h1>
+      </div>
+      <div class="section">
+        <div class="index-list">
+          <button class="index-card" onclick="showProject('morpion', null)">
+            <span class="index-card-title">Morpion</span>
+            <span class="index-card-sub">Projet libre · Première NSI · Python</span>
+          </button>
+          <button class="index-card" onclick="showProject('site-web', null)">
+            <span class="index-card-title">Site web</span>
+            <span class="index-card-sub">Projet · Première NSI · HTML, CSS, JS, PHP</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- INDEX BUT 1RE ANNÉE -->
+    <section id="content-index-but1" class="content-section hidden">
+      <div class="page-header">
+        <div class="project-eyebrow"><button class="breadcrumb-btn" onclick="showSection('content-index')">Portfolio</button> ›</div>
+        <h1>BUT Info — 1re année</h1>
+      </div>
+      <div class="section">
+        <div class="index-list">
+          <button class="index-card" onclick="showProject('sae101', null)">
+            <span class="index-card-title">SAÉ 1.01</span>
+            <span class="index-card-sub">Réseaux sociaux · Python, Jupyter Notebook</span>
+          </button>
+          <button class="index-card" onclick="showProject('sae102', null)">
+            <span class="index-card-title">SAÉ 1.02</span>
+            <span class="index-card-sub">Algorithmes de tri · Python</span>
+          </button>
+          <button class="index-card" onclick="showProject('sae104', null)">
+            <span class="index-card-title">SAÉ 1.04</span>
+            <span class="index-card-sub">Base de données · SQL, PostgreSQL</span>
+          </button>
+          <button class="index-card" onclick="showProject('sae201', null)">
+            <span class="index-card-title">SAÉ 2.01</span>
+            <span class="index-card-sub">Jeu d'échecs · Java, GitHub</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- INDEX BUT 2E ANNÉE -->
+    <section id="content-index-but2" class="content-section hidden">
+      <div class="page-header">
+        <div class="project-eyebrow"><button class="breadcrumb-btn" onclick="showSection('content-index')">Portfolio</button> ›</div>
+        <h1>BUT Info — 2e année</h1>
+      </div>
+      <div class="section">
+        <div class="index-list">
+          <button class="index-card" onclick="showProject('sae301', null)">
+            <span class="index-card-title">SAÉ 3.01</span>
+            <span class="index-card-sub">Diffusion sonore · Flask, JS</span>
+          </button>
+          <button class="index-card" onclick="showProject('sae401', null)">
+            <span class="index-card-title">SAÉ 4.01</span>
+            <span class="index-card-sub">Refonte diffusion sonore · Flask, SQL, AJAX</span>
+          </button>
+          <button class="index-card" onclick="showProject('stage', null)">
+            <span class="index-card-title">Stage</span>
+            <span class="index-card-sub">Plan interactif Chiesi · Full-Stack Flask</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- À PROPOS -->
+    <section id="content-about" class="content-section">
+      <div class="page-header">
+        <div class="project-eyebrow">Portfolio</div>
+        <h1>À propos de moi</h1>
+      </div>
+      <div class="section">
+        <div class="section-head">Présentation</div>
+        <p>Je suis étudiante en deuxième année de BUT Informatique à l’Université de Sorbonne Paris Nord, à Villetaneuse, et j’ai validé ma première année.</p>
+        <br>
+        <p>Diplômée du BAC avec mention assez bien et les spécialités NSI et SVT, j’ai toujours eu des centres d’intérêt assez différents, comme l’écriture, le dessin, la science et la programmation, mais l’informatique est un domaine où je me vois travailler, contrairement aux autres domaines.</p>
+        <br>
+        <p>J’ai un esprit logique qui me permet d'apprendre rapidement, j’aime bien faire de l’algorithmie, je travaille bien en équipe et je suis toujours curieuse d’apprendre de nouvelles choses.</p>
+        <br>
+        <p>À terme, j’aimerais m’orienter dans le secteur du jeu vidéo, en faisant un master dans ce domaine pour me spécialiser.</p>
+      </div>
+    </section>
+
+    <!-- MORPION -->
+    <section id="content-morpion" class="content-section hidden">
+      <div class="breadcrumb">
+        <button class="breadcrumb-btn" onclick="showSection('content-index')">Portfolio</button> <span>›</span> <button class="breadcrumb-btn" onclick="showSection('content-index-lycee')">Lycée NSI</button> <span>›</span> Morpion
+      </div>
+
+      <div class="page-header">
+        <div class="project-eyebrow">Projet libre · Première NSI</div>
+        <h1>Jeu de Morpion</h1>
+        <div class="tags">
+          <span class="tag lang">Python</span>
+          <span class="tag tool">Thonny</span>
+        </div>
+      </div>
+
+      <div class="cards">
+        <div class="info-card">
+          <div class="info-card-label">Niveau</div>
+          <div class="info-card-value">Première</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-label">Matière</div>
+          <div class="info-card-value">Spécialité NSI</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-head">Contexte</div>
+        <p>En Première, lors de la spécialité NSI, j'ai réalisé plusieurs projets pour mettre en pratique les notions vues en cours. Ce Morpion a été mon tout premier projet de l'année — le point de départ de mon apprentissage de Python.</p>
+      </div>
+
+      <div class="section">
+            <div class="section-head">Tâches</div>
+            <p>Mes tâches principales ont consisté à développer la logique complète d'un jeu de Morpion textuel, jouable directement dans la console contre l'ordinateur.</p>
+            <br>
+            <p>J'ai dû modéliser la grille de jeu à l'aide de tableaux, concevoir la boucle principale pour alterner les tours de jeu, et coder les vérifications (conditions de victoire, d'égalité ou case déjà occupée).</p>
+            <br>
+            <p>Cela impliquait également de créer des fonctions pour gérer les interactions avec l'utilisateur (récupération des coordonnées sous forme de ligne/colonne) et programmer les réponses automatiques de l'ordinateur.</p>
+        </div>
+
+      <div class="section">
+        <div class="section-head">Ce que j'ai appris/amélioré</div>
+        <div class="skill-pills">
+          <span class="skill-pill">Python</span>
+          <span class="skill-pill">Thonny</span>
+          <span class="skill-pill">Boucles while / for</span>
+          <span class="skill-pill">Conditions if / else</span>
+          <span class="skill-pill">Fonctions</span>
+          <span class="skill-pill">Logique de jeu</span>
+        </div>
+      </div>
+      <div class="section">
+        <div class="section-head">Extraits d'interface</div>
+        <img style="width: 100%; height: auto;" alt="Interface Morpion" src="img/morpion.png"/>
+      </div>
+
+      <div class="section">
+            <div class="section-head">Pistes d’amélioration</div>
+            <p>Pour l'instant, l'ordinateur tire des nombres aléatoires sans aucune logique. J'aimerais changer ça pour faire une IA minimaliste qui réfléchit aux meilleurs coups.</p>
+        </div>
+
+    </section>
+
+    <!-- SITE WEB NSI -->
+    <section id="content-site-web" class="content-section hidden">
+      <div class="breadcrumb">
+        <button class="breadcrumb-btn" onclick="showSection('content-index')">Portfolio</button> <span>›</span> <button class="breadcrumb-btn" onclick="showSection('content-index-lycee')">Lycée NSI</button> <span>›</span> Site web
+      </div>
+      <div class="page-header">
+        <div class="project-eyebrow">Projet · Première NSI</div>
+        <h1>Site web</h1>
+        <div class="tags">
+          <span class="tag lang">HTML</span>
+          <span class="tag lang">CSS</span>
+          <span class="tag lang">JS</span>
+          <span class="tag lang">PHP</span>
+          <span class="tag tool">Notepad++</span>
+        </div>
+      </div>
+
+      <div class="cards">
+        <div class="info-card">
+          <div class="info-card-label">Niveau</div>
+          <div class="info-card-value">Première</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-label">Matière</div>
+          <div class="info-card-value">Spécialité NSI</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-head">Contexte</div>
+        <p>Réalisé en classe de Première NSI, ce projet consistait à concevoir un site web complet d'au moins cinq pages, incluant une navigation via un sommaire.</p>
+        <br>
+        <p>Le choix du sujet étant libre, j'ai saisi l'opportunité de mettre en valeur mon attrait pour l'écriture en concevant ce site autour de l'une de mes propres histoires narratives.</p>
+        <br>
+        <p>Ce projet a marqué ma véritable initiation au développement web, de la page blanche jusqu'au rendu final.</p>
+      </div>
+
+      <div class="section">
+            <div class="section-head">Tâches</div>
+            <p>J'ai structuré l'arborescence et le contenu des différentes pages en HTML, puis j'ai géré l'habillage visuel (images de fond, typographie, couleurs) via des feuilles de style CSS.</p>
+            <br>
+            <p>Si des restrictions techniques sur les postes du lycée m'ont empêchée d'exécuter la partie backend en PHP comme initialement prévu, j'ai su m'adapter en intégrant mes premiers scripts en JavaScript afin d'apporter du dynamisme et de l'interactivité à mon interface.</p>
+        </div>
+
+      <div class="section">
+        <div class="section-head">Ce que j'ai appris/amélioré</div>
+        <div class="skill-pills">
+          <span class="skill-pill">Développement Front-end</span>
+          <span class="skill-pill">Notepad++</span>
+          <span class="skill-pill">Conception d'arborescence web</span>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-head">Extraits de code</div>
+        <img style="width: 100%; height: auto;" alt="CSS" src="img/site_web.png"/>
+      </div>
+
+      <div class="section">
+        <div class="section-head">Extraits d'interface</div>
+        <img style="width: 100%; height: auto;" alt="Site Web Index" src="img/site_web_accueil.png"/>
+      </div>
+
+      <div class="section">
+            <div class="section-head">Pistes d’amélioration</div>
+            <p>J'aimerais reprendre ce code pour améliorer les interactions et utiliser le PHP sur un ordinateur fonctionnel.</p>
+        </div>
+    </section>
+
+    <!-- SAÉ 1.01 -->
+    <section id="content-sae101" class="content-section hidden">
+      <div class="breadcrumb">
+        <button class="breadcrumb-btn" onclick="showSection('content-index')">Portfolio</button> <span>›</span> <button class="breadcrumb-btn" onclick="showSection('content-index-but1')">BUT Info 1re année</button> <span>›</span> SAÉ 1.01
+      </div>
+      <div class="page-header">
+        <div class="project-eyebrow">SAÉ · BUT Informatique 1re année</div>
+        <h1>SAÉ 1.01 · Implémentation : Etude de communautés dans un réseau social </h1>
+        <div class="tags">
+          <span class="tag lang">Python</span>
+          <span class="tag tool">Jupyter Notebook</span>
+        </div>
+      </div>
+
+      <div class="cards">
+        <div class="info-card">
+          <div class="info-card-label">Niveau</div>
+          <div class="info-card-value">Première année · Premier semestre</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-label">Cursus</div>
+          <div class="info-card-value">BUT Informatique</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-head">Contexte</div>
+        <p>Le but de cette SAE (Situation d’Apprentissage et d’Evaluation) était d'étudier et de modéliser des communautés au sein d'un réseau social.</p>
+        <br>
+        <p>L'objectif principal était d'apprendre à représenter ces réseaux sous différentes formes de structures de données (tableaux, fichiers CSV, dictionnaires) afin de pouvoir les analyser informatiquement et en extraire des informations clés, comme le nombre d'amis d'un utilisateur, la taille globale du réseau ou l'identification des personnes les plus populaires.</p>
+        </div>
+
+        <div class="section">
+            <div class="section-head">Tâches</div>
+            <p>Mes tâches principales ont consisté à développer divers algorithmes et fonctions en Python pour manipuler et interagir avec les données du réseau.</p>
+            <br>
+            <p>J'ai notamment codé des fonctions permettant de parcourir des tableaux d'interactions pour isoler des utilisateurs uniques, rechercher des profils spécifiques, et calculer des statistiques sur la communauté, le tout structuré, documenté et testé dans Jupyter Notebook.</p>
+        </div>
+
+        <div class="section">
+            <div class="section-head">Ce que j'ai appris/amélioré</div>
+            <div class="skill-pills">
+                <span class="skill-pill">Jupyter Notebook</span>
+                <span class="skill-pill">Manipulation de structures de données en Python</span>
+                <span class="skill-pill">Traitement de fichiers CSV</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-head">Extraits de code</div>
+            <img style="width: 100%; height: auto;" alt="Extrait code" src="img/taille_reseau.png"/>
+        </div>
+
+    </section>
+
+    <!-- SAÉ 1.02 -->
+    <section id="content-sae102" class="content-section hidden">
+      <div class="breadcrumb">
+        <button class="breadcrumb-btn" onclick="showSection('content-index')">Portfolio</button> <span>›</span> <button class="breadcrumb-btn" onclick="showSection('content-index-but1')">BUT Info 1re année</button> <span>›</span> SAÉ 1.02
+      </div>
+      <div class="page-header">
+        <div class="project-eyebrow">SAÉ · BUT Informatique 1re année</div>
+        <h1>SAÉ 1.02 · Comparaison d’algorithmes : Communautés dans un réseau</h1>
+        <div class="tags">
+          <span class="tag lang">Python</span>
+          <span class="tag tool">Visual Studio Code</span>
+        </div>
+      </div>
+      
+      <div class="cards">
+        <div class="info-card">
+          <div class="info-card-label">Niveau</div>
+          <div class="info-card-value">Première année · Premier semestre</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-label">Cursus</div>
+          <div class="info-card-value">BUT Informatique</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-head">Contexte</div>
+        <p>Le but de cette SAE, qui s'inscrit dans la continuité de la SAE 1.01, était d'étudier et de comparer différents algorithmes appliqués aux réseaux sociaux.</p>
+        <br>
+        <p>L'objectif était d'approfondir la manipulation de ces réseaux, modélisés cette fois-ci exclusivement sous forme de dictionnaires, afin de mieux analyser les relations entre les utilisateurs.</p>
+        <br>
+        <p>Il s'agissait notamment de comprendre comment vérifier si un groupe forme une véritable communauté (où chaque membre est ami avec tous les autres) ou comment en générer une à partir d'un réseau existant.</p>
+      </div>
+
+        <div class="section">
+            <div class="section-head">Tâches</div>
+            <p>Mes tâches principales ont consisté à développer et implémenter des algorithmes spécifiques en Python pour traiter ces données.</p>
+            <br>
+            <p>J'ai par exemple codé un algorithme de tri par insertion permettant de classer les membres d'un groupe par ordre de popularité (nombre d'amis) décroissante.</p>
+            <br>
+            <p>J'ai également conçu des fonctions logiques pour extraire, analyser et valider des communautés au sein du dictionnaire global.</p>
+        </div>
+
+        <div class="section">
+            <div class="section-head">Ce que j'ai appris/amélioré</div>
+            <div class="skill-pills">
+                <span class="skill-pill">Algorithmes de tri</span>
+                <span class="skill-pill">Manipulation avancée de dictionnaires</span>
+            </div>
+        </div>
+        <div class="section">
+            <div class="section-head">Extraits de code</div>
+            <img style="width: 100%; height: auto;" alt="Extrait code" src="img/tri_popu.png"/>
+        </div>
+
+    </section>
+
+
+    <!-- SAÉ 1.04 -->
+    <section id="content-sae104" class="content-section hidden">
+      <div class="breadcrumb">
+        <button class="breadcrumb-btn" onclick="showSection('content-index')">Portfolio</button> <span>›</span> <button class="breadcrumb-btn" onclick="showSection('content-index-but1')">BUT Info 1re année</button> <span>›</span> SAÉ 1.04
+      </div>
+      <div class="page-header">
+        <div class="project-eyebrow">SAÉ · BUT Informatique 1re année</div>
+        <h1>SAÉ 1.04 · Création d’une base de données : Climate-related disasters frequency</h1>
+        <div class="tags">
+          <span class="tag lang">SQL</span>
+          <span class="tag tool">SGBDR PostGreSQL</span>
+          <span class="tag tool">MySQL Workbench</span>
+        </div>
+      </div>
+      
+      <div class="cards">
+        <div class="info-card">
+          <div class="info-card-label">Niveau</div>
+          <div class="info-card-value">Première année · Premier semestre</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-label">Cursus</div>
+          <div class="info-card-value">BUT Informatique</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-head">Contexte</div>
+        <p>Le but de cette SAE était de concevoir, mettre en place et alimenter une base de données relationnelle destinée à stocker des mesures de fréquence relatives aux catastrophes climatiques (telles que les sécheresses, les feux de forêt, les inondations, etc.).</p>
+        <br>
+        <p>L'objectif principal était de structurer ces informations afin de pouvoir y intégrer et centraliser des données extérieures massives provenant d'un fichier CSV.</p>
+      </div>
+
+        <div class="section">
+            <div class="section-head">Tâches</div>
+            <p>Mes tâches principales ont consisté à utiliser un Atelier de Génie Logiciel (AGL), en l'occurrence MySQL Workbench, pour concevoir et dessiner visuellement le Modèle Physique de Données (MPD).</p>
+            <br>
+            <p>À partir de ce schéma, j'ai généré automatiquement le script SQL de création. J'ai ensuite instancié cette base de données et procédé à son alimentation en important les données du fichier CSV dans les différentes tables.</p>
+        </div>
+
+        <div class="section">
+            <div class="section-head">Ce que j'ai appris/amélioré</div>
+            <div class="skill-pills">
+                <span class="skill-pill">SQL</span>
+                <span class="skill-pill">SGBDR PostgreSQL</span>
+                <span class="skill-pill">MySQL Workbench (AGL)</span>
+                <span class="skill-pill">Modélisation de bases de données relationnelles</span>
+                <span class="skill-pill">Importation de données CSV</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-head">Extraits d'interface</div>
+            <img style="width: 100%; height: auto;" alt="Extrait code" src="img/agl.png"/>
+        </div>
+
+      <div class="section">
+            <div class="section-head">Pistes d’amélioration</div>
+            <p>Il y avait la possibilité de prendre un fichier CSV plus complexe pour générer la base de données, mais je n'ai pas eu le temps d'essayer de créer un algorithme pour récupérer correctement les données de ce fichier.</p>
+        </div>
+
+    </section>
+
+
+    <!-- SAÉ 2.01 -->
+    <section id="content-sae201" class="content-section hidden">
+      <div class="breadcrumb">
+        <button class="breadcrumb-btn" onclick="showSection('content-index')">Portfolio</button> <span>›</span> <button class="breadcrumb-btn" onclick="showSection('content-index-but1')">BUT Info 1re année</button> <span>›</span> SAÉ 2.01
+      </div>
+      <div class="page-header">
+        <div class="project-eyebrow">SAÉ · BUT Informatique 1re année</div>
+        <h1>SAÉ 2.01 · Développement d’une application : Jeu d’échecs</h1>
+        <div class="tags">
+          <span class="tag lang">Java</span>
+          <span class="tag tool">Visual Studio Code</span>
+          <span class="tag tool">GitHub</span>
+        </div>
+      </div>
+      
+      <div class="cards">
+        <div class="info-card">
+          <div class="info-card-label">Niveau</div>
+          <div class="info-card-value">Première année · Deuxième semestre</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-label">Cursus</div>
+          <div class="info-card-value">BUT Informatique</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-head">Contexte</div>
+        <p>Le but de cette SAE, réalisée en binôme, était de développer une application logicielle d'un jeu d'échecs complet pour deux joueurs.</p>
+        <br>
+        <p>L'objectif principal était de mettre en pratique les concepts fondamentaux de la Programmation Orientée Objet (POO) afin de modéliser le plateau, le comportement des pièces et les règles spécifiques du jeu.</p>
+      </div>
+
+        <div class="section">
+            <div class="section-head">Tâches</div>
+            <p>M'étant occupée de la moitié du développement du projet, mes tâches principales ont consisté à concevoir et coder plusieurs classes représentant les différentes pièces et leurs fonctionnalités.</p>
+            <br>
+            <p>J'ai notamment implémenté la logique de mouvement spécifique à certaines pièces (comme la Tour) en exploitant les mécanismes d'héritage pour utiliser et adapter les méthodes issues de classes parentes. Le tout a été géré de manière collaborative grâce au contrôle de version.</p>
+        </div>
+
+        <div class="section">
+            <div class="section-head">Ce que j'ai appris/amélioré</div>
+            <div class="skill-pills">
+                <span class="skill-pill">Java</span>
+                <span class="skill-pill">Visual Studio Code</span>
+                <span class="skill-pill">GitHub (travail collaboratif)</span>
+                <span class="skill-pill">Programmation Orientée Objet</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-head">Extraits de code</div>
+            <img style="width: 100%; height: auto;" alt="Extrait code" src="img/tour.png"/>
+        </div>
+
+      <div class="section">
+            <div class="section-head">Pistes d’amélioration</div>
+            <p>Par manque de temps, nous n'avons pas pu finalisé le code et il n'est pas fonctionnel. J'aurai aimé le finaliser et même créer une interface.</p>
+        </div>
+    </section>
+
+
+    <!-- SAÉ 301 -->
+    <section id="content-sae301" class="content-section hidden">
+      <div class="breadcrumb">
+        <button class="breadcrumb-btn" onclick="showSection('content-index')">Portfolio</button> <span>›</span> <button class="breadcrumb-btn" onclick="showSection('content-index-but2')">BUT Info 2e année</button> <span>›</span> SAÉ 3.01
+      </div>
+      <div class="page-header">
+        <div class="project-eyebrow">SAÉ · BUT Informatique 2e année</div>
+        <h1>SAÉ 3.01 · Développement d'une application : Diffusion sonore</h1>
+        <div class="tags">
+          <span class="tag lang">HTML</span>
+          <span class="tag lang">CSS</span>
+          <span class="tag lang">JavaScript</span>
+          <span class="tag lang">Python (Flask, Jinja)</span>
+          <span class="tag tool">Visual Studio Code</span>
+          <span class="tag tool">GitHub</span>
+        </div>
+      </div>
+      
+      <div class="cards">
+        <div class="info-card">
+          <div class="info-card-label">Niveau</div>
+          <div class="info-card-value">Deuxième année · Premier semestre</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-label">Cursus</div>
+          <div class="info-card-value">BUT Informatique</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-head">Contexte</div>
+        <p>Le but de cette SAE (Situation d’Apprentissage et d’Evaluation) en groupe était de créer un site de supervision de diffusion sonore pour magasins, pour diffuser de la musique et des messages. L'objectif principal est de garantir une diffusion en continue (pas de coupure audio même en cas de panne réseau), notamment à l’aide de playlists de secours locales, tout en permettant à un administrateur de surveiller l’état et l’historique des lecteurs à partir du site.</p>
+        <br>
+        <p style="margin-bottom: 8px;">Trois rôles doivent être présents :  </p>
+        <ul style="margin-left: 50px;">
+            <li>L'administrateur, qui a accès à toutes les fonctionnalités, peut créer et supprimer des utilisateurs et gérer les lecteurs </li>
+            <li>Le commercial, qui crée les plannings et enregistre les messages </li>
+            <li>Le marketing, qui crée les playlists et enregistre les musiques </li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="section-head">Tâches</div>
+        <p>Mes tâches principales ont été la création de l’intégralité de l’interface du site (HTML, CSS, JS) mais j’ai également participé à la création de contrôleurs Flask (le login, le signin) et au débogage d’une grande partie du code. </p>
+      </div>
+
+      <div class="section">
+        <div class="section-head">Ce que j'ai appris/amélioré</div>
+        <div class="skill-pills">
+            <span class="skill-pill">CSS</span>
+            <span class="skill-pill">Jinja</span>
+            <span class="skill-pill">Flask</span>
+            <span class="skill-pill">Logique MVC</span>
+        </div>
+        </div>
+
+      <div class="section">
+            <div class="section-head">Extraits de code</div>
+            <img style="width: 100%; height: auto;" alt="Login Controller" src="img/login.png"/>
+        </div>
+
+      <div class="section">
+        <div class="section-head">Extraits d'interface</div>
+        <img style="width: 100%; height: auto;" alt="Interface accueil" src="img/accueil_301.png"/>
+        <img style="width: 100%; height: auto;" alt="Interface admin" src="img/admin_301.png"/>
+      </div>
+
+      <div class="section">
+            <div class="section-head">Pistes d’amélioration</div>
+            <p>La DA n'était pas satisfaisante et le site n'est pas dynamique ni réactif.</p>
+        </div>
+
+    </section>
+
+
+    <!-- SAÉ 401 -->
+    <section id="content-sae401" class="content-section hidden">
+      <div class="breadcrumb">
+        <button class="breadcrumb-btn" onclick="showSection('content-index')">Portfolio</button> <span>›</span> <button class="breadcrumb-btn" onclick="showSection('content-index-but2')">BUT Info 2e année</button> <span>›</span> SAÉ 4.01
+      </div>
+      <div class="page-header">
+        <div class="project-eyebrow">SAÉ · BUT Informatique 2e année</div>
+        <h1>SAÉ 4.01 · Développement d'une application complexe : Diffusion sonore (suite)</h1>
+        <div class="tags">
+          <span class="tag lang">HTML</span>
+          <span class="tag lang">CSS</span>
+          <span class="tag lang">JavaScript</span>
+          <span class="tag lang">Python (Flask, Jinja)</span>
+          <span class="tag lang">SQL</span>
+          <span class="tag tool">Visual Studio Code</span>
+          <span class="tag tool">GitHub</span>
+        </div>
+      </div>
+      
+      <div class="cards">
+        <div class="info-card">
+          <div class="info-card-label">Niveau</div>
+          <div class="info-card-value">Deuxième année · Deuxième semestre</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-label">Cursus</div>
+          <div class="info-card-value">BUT Informatique</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-head">Contexte</div>
+        <p>Le but de cette SAE (Situation d’Apprentissage et d’Evaluation) en groupe était de reprendre un site de supervision de diffusion sonore (SAE 3.01) et de l’améliorer. Pour cette SAE, mon groupe et moi avons repris notre projet précédent pour l’améliorer.</p>
+      </div>
+
+      <div class="section">
+        <div class="section-head">Tâches</div>
+        <p>Mes tâches principales ont été la refonte du site web, notamment d’imaginer une nouvelle DA et de nouvelles interactions UX/UI. Je me suis occupée de l’intégration de CSS et JavaScript dans le code des pages et de créer plusieurs fonctionnalités, telles que la recherche, le tri, l’envoi de requêtes aux administrateurs et un système de mot de passe oublié.</p>
+        <br>
+        <p>Mes tâches secondaires ont été d’imaginer et de créer des réactions UX/UI agréables, telles que les fenêtres modales, des notifications “toast” non intrusives, et de veiller à l’épuration de l’espace visuel. J'ai également participé à la refonte de la base de données.</p>
+      </div>
+
+      <div class="section">
+        <div class="section-head">Ce que j'ai appris/amélioré</div>
+        <div class="skill-pills">
+            <span class="skill-pill">Recherche/tri en SQL</span>
+            <span class="skill-pill">AJAX</span>
+            <span class="skill-pill">UX/UI</span>
+            <span class="skill-pill">Automatisation d'envoi de mails</span>
+            <span class="skill-pill">Génération de liens cryptés (mot de passe oublié)</span>
+        </div>
+      </div>
+
+      <div class="section">
+            <div class="section-head">Extraits de code</div>
+            <img style="width: 100%; height: auto;" alt="Envoi Mail Fonction" src="img/envoi_mail.png"/>
+        </div>
+
+      <div class="section">
+        <div class="section-head">Extraits d'interface</div>
+        <img style="width: 100%; height: auto;" alt="Interface accueil" src="img/accueil_401.png"/>
+        <img style="width: 100%; height: auto;" alt="Interface admin" src="img/admin_401.png"/>
+      </div>
+    </section>
+
+
+    <!-- Stage -->
+    <section id="content-stage" class="content-section hidden">
+      <div class="breadcrumb">
+        <button class="breadcrumb-btn" onclick="showSection('content-index')">Portfolio</button> <span>›</span> <button class="breadcrumb-btn" onclick="showSection('content-index-but2')">BUT Info 2e année</button> <span>›</span> Stage
+      </div>
+      <div class="page-header">
+        <div class="project-eyebrow">Stage · BUT Informatique 2e année</div>
+        <h1>Stage de développement web</h1>
+        <div class="tags">
+          <span class="tag lang">HTML</span>
+          <span class="tag lang">CSS</span>
+          <span class="tag lang">JavaScript</span>
+          <span class="tag lang">Python (Flask, Jinja)</span>
+          <span class="tag lang">SQL</span>
+          <span class="tag tool">Visual Studio Code</span>
+        </div>
+      </div>
+      
+      <div class="cards">
+        <div class="info-card">
+          <div class="info-card-label">Niveau</div>
+          <div class="info-card-value">Deuxième année · Deuxième semestre</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-label">Cursus</div>
+          <div class="info-card-value">BUT Informatique</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-head">Contexte</div>
+        <p>Réalisé au cours de ma deuxième année de BUT Informatique, ce stage de deux mois au sein de l'entreprise Chiesi avait pour but la création d'un site web hébergeant un plan interactif de leurs locaux.</p>
+        <br>
+        <p>L'enjeu était de proposer une solution fluide, intuitive et responsive (parfaitement adaptée aux supports PC et mobile), pensée en étroite collaboration avec une UX/UI designer.</p>
+      </div>
+
+      <div class="section">
+        <div class="section-head">Tâches</div>
+        <p>J'ai pris en charge, en totale autonomie, l'intégralité du développement full-stack de ce site (frontend et backend).</p>
+        <br>
+        <p style="margin-bottom: 8px;">Mes missions ont couvert tout le cycle de vie du projet : </p>
+        <p>L'intégration fidèle des interfaces validée par des points de synchronisation hebdomadaires avec la designer, le développement des fonctionnalités interactives, jusqu'à ma participation active au déploiement final de l'application.</p>
+      </div>
+
+      <div class="section">
+        <div class="section-head">Ce que j'ai appris/amélioré</div>
+        <div class="skill-pills">
+            <span class="skill-pill">Développement Full-Stack</span>
+            <span class="skill-pill">Flask</span>
+            <span class="skill-pill">Responsive Design</span>
+            <span class="skill-pill">Gestion de projet de bout en bout</span>
+            <span class="skill-pill">Travail collaboratif inter-métiers</span>
+            <span class="skill-pill">Travail en autonomie</span>
+        </div>
+      </div>
+
+      <div class="section">
+            <div class="section-head">Extraits de code</div>
+            <img style="width: 100%; height: auto;" alt="Recherche par place" src="img/chiesi_code.png"/>
+        </div>
+
+      <div class="section">
+        <div class="section-head">Extraits d'interface</div>
+        <img style="width: 100%; height: auto;" alt="Interface accueil" src="img/chiesi.png"/>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
 </body>
 </html>
